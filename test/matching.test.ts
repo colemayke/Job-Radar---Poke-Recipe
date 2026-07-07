@@ -26,9 +26,26 @@ const config = (over: Partial<WatchConfig>): WatchConfig => ({
 });
 
 describe("matchesFilters", () => {
-  it("applies default keywords when none are given", () => {
-    expect(matchesFilters(role({ title: "Software Engineer" }), config({}))).toBe(true);
-    expect(matchesFilters(role({ title: "Account Executive", department: "Sales" }), config({}))).toBe(false);
+  it("applies NO keyword filter when keywords are empty: every function passes", () => {
+    const all = config({});
+    expect(matchesFilters(role({ title: "Software Engineer" }), all)).toBe(true);
+    expect(matchesFilters(role({ title: "Marketing Manager", department: "Marketing" }), all)).toBe(true);
+    expect(matchesFilters(role({ title: "Software Development Co-op (Fall 2026)" }), all)).toBe(true);
+    expect(matchesFilters(role({ title: "Product Design Intern", department: null }), all)).toBe(true);
+    expect(matchesFilters(role({ title: "Account Executive", department: "Sales" }), all)).toBe(true);
+  });
+
+  it("narrows to early-career roles with intern/co-op keywords", () => {
+    const c = config({ keywords: ["intern", "co-op"] });
+    expect(matchesFilters(role({ title: "Product Design Intern" }), c)).toBe(true);
+    expect(matchesFilters(role({ title: "Software Development Co-op (Fall 2026)" }), c)).toBe(true);
+    expect(matchesFilters(role({ title: "Senior Staff Software Engineer" }), c)).toBe(false);
+  });
+
+  it("narrows to a function with a keyword like marketing", () => {
+    const c = config({ keywords: ["marketing"] });
+    expect(matchesFilters(role({ title: "Growth Marketing Lead", department: null }), c)).toBe(true);
+    expect(matchesFilters(role({ title: "Site Reliability Engineer" }), c)).toBe(false);
   });
 
   it("matches keywords against title and department, case-insensitively", () => {

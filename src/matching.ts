@@ -1,29 +1,23 @@
 import type { Role, WatchConfig } from "./types.js";
 
-export const DEFAULT_KEYWORDS = [
-  "design engineer",
-  "frontend",
-  "front end",
-  "product engineer",
-  "software engineer",
-  "ui engineer",
-];
-
 export const DEFAULT_POSTED_WITHIN_DAYS = 21;
 
 /**
  * Matching rules:
- * - keywords: case-insensitive substring against title and department;
- *   empty keyword list falls back to DEFAULT_KEYWORDS
+ * - keywords: case-insensitive substring against title and department; an
+ *   empty keyword list applies NO keyword filter — every role is a candidate
+ *   (function-agnostic by design: narrowing to a role type, seniority, or
+ *   "intern"/"co-op" is done by passing keywords; resume-fit lives in Poke)
  * - locations: case-insensitive substring against location (a role with no
  *   location only passes a location filter if it is remote and "remote" is
  *   among the requested locations)
  * - remote_only: keeps roles flagged remote or with "remote" in the location
  */
 export function matchesFilters(role: Role, config: WatchConfig): boolean {
-  const keywords = config.keywords.length > 0 ? config.keywords : DEFAULT_KEYWORDS;
-  const haystack = `${role.title} ${role.department ?? ""}`.toLowerCase();
-  if (!keywords.some((k) => haystack.includes(k.toLowerCase()))) return false;
+  if (config.keywords.length > 0) {
+    const haystack = `${role.title} ${role.department ?? ""}`.toLowerCase();
+    if (!config.keywords.some((k) => haystack.includes(k.toLowerCase()))) return false;
+  }
 
   const isRemote = role.remote || /remote/i.test(role.location ?? "");
 

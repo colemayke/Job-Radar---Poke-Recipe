@@ -28,7 +28,7 @@ export interface WatchConfig {
   scope: WatchScope;
   /** Resolved boards for custom scope; empty for registry scope. */
   companies: CompanyRef[];
-  /** Empty means DEFAULT_KEYWORDS apply at match time */
+  /** Empty means no keyword filter: every role in scope is a candidate */
   keywords: string[];
   locations: string[];
   remote_only: boolean;

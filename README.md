@@ -29,6 +29,14 @@ diffs. No third-party API keys.
 
 Filters: `companies`, `keywords`, `locations`, `remote_only`, `posted_within_days`.
 
+Matching is function-agnostic: with no keywords, **no keyword filter is applied** — every
+role in scope and inside the freshness window is a candidate, whatever the function
+(engineering, marketing, design, ops, data) or career stage (internships and co-ops
+included). This is intentionally broad; resume-fit narrowing is Poke's job. The two volume
+levers are supplying `keywords` (e.g. `["marketing"]` or `["intern", "co-op", "new grad"]`,
+matched as case-insensitive substrings of title and department) and tightening
+`posted_within_days` (default 21). Responses are always capped at 25 roles, newest first.
+
 ## Running it
 
 Requires Node.js 20.11+ and Postgres.

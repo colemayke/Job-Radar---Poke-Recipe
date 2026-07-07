@@ -1,8 +1,8 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { normalizeAshby } from "../src/adapters/ashby.js";
-import { parseApplePage } from "../src/adapters/apple.js";
+import { fetchApple, parseApplePage } from "../src/adapters/apple.js";
 import { normalizeGreenhouse } from "../src/adapters/greenhouse.js";
 import { normalizeLever } from "../src/adapters/lever.js";
 import type { CompanyRef, Role } from "../src/types.js";
@@ -118,5 +118,24 @@ describe("apple adapter", () => {
     expect(() => parseApplePage(company, "<html><body>nope</body></html>")).toThrow(
       /hydration data/,
     );
+  });
+
+  it("with no keywords, fetches the unfiltered newest pages instead of searching", async () => {
+    const requested: string[] = [];
+    vi.stubGlobal("fetch", async (url: string | URL) => {
+      requested.push(String(url));
+      return new Response(fixture("apple.html"), { status: 200 });
+    });
+    try {
+      const roles = await fetchApple(company, []);
+      expect(roles.length).toBeGreaterThan(0);
+      expect(requested).toHaveLength(3);
+      for (const u of requested) {
+        expect(u).toContain("sort=newest");
+        expect(u).not.toContain("search=");
+      }
+    } finally {
+      vi.unstubAllGlobals();
+    }
   });
 });

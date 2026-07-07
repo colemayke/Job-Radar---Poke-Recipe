@@ -51,12 +51,18 @@ export function parseApplePage(company: CompanyRef, html: string): Role[] {
 
 export async function fetchApple(company: CompanyRef, keywords: string[]): Promise<Role[]> {
   const terms = [...new Set(keywords.map((k) => k.trim().toLowerCase()).filter(Boolean))].slice(0, 6);
+  // No keywords = no keyword filter anywhere in the radar, so don't search:
+  // take the first pages of the unfiltered newest-first listing instead
+  // (verified live 2026-07-07: the search page renders the same hydration
+  // data without a search term, and &page=N paginates).
+  const urls =
+    terms.length > 0
+      ? terms.map(
+          (t) => `https://jobs.apple.com/en-us/search?search=${encodeURIComponent(t)}&sort=newest`,
+        )
+      : [1, 2, 3].map((p) => `https://jobs.apple.com/en-us/search?sort=newest&page=${p}`);
   const byId = new Map<string, Role>();
-  const pages = await Promise.allSettled(
-    terms.map((t) =>
-      fetchText(`https://jobs.apple.com/en-us/search?search=${encodeURIComponent(t)}&sort=newest`),
-    ),
-  );
+  const pages = await Promise.allSettled(urls.map((u) => fetchText(u)));
   const errors: string[] = [];
   for (const page of pages) {
     if (page.status === "rejected") {

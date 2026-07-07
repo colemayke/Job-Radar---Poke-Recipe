@@ -3,7 +3,6 @@ import type { RoleFetcher } from "./adapters/index.js";
 import { findByName, registryScope } from "./companies.js";
 import type { WatchStore } from "./db.js";
 import {
-  DEFAULT_KEYWORDS,
   DEFAULT_POSTED_WITHIN_DAYS,
   dedupeRoles,
   filterRoles,
@@ -19,10 +18,6 @@ export interface WatchInput {
   locations?: string[];
   remote_only?: boolean;
   posted_within_days?: number;
-}
-
-export function effectiveKeywords(config: Pick<WatchConfig, "keywords">): string[] {
-  return config.keywords.length > 0 ? config.keywords : DEFAULT_KEYWORDS;
 }
 
 /** dedupe -> freshness window -> coarse filter: the narrowing pipeline. */
@@ -115,7 +110,7 @@ export class WatchService {
     await this.store.createWatch(watchId, config);
     const { roles, failed_count, failed_sample } = await this.fetchRoles(
       this.scopeCompanies(config),
-      effectiveKeywords(config),
+      config.keywords,
     );
     const matchedNow = sortNewestFirst(narrow(roles, config));
     await this.store.markSeen(watchId, matchedNow.map((r) => r.id));
@@ -144,7 +139,7 @@ export class WatchService {
     if (!config) return null;
     const { roles, failed_count, failed_sample } = await this.fetchRoles(
       this.scopeCompanies(config),
-      effectiveKeywords(config),
+      config.keywords,
     );
     const candidates = narrow(roles, config);
     const inserted = new Set(await this.store.markSeen(watchId, candidates.map((r) => r.id)));
@@ -210,7 +205,7 @@ export class WatchService {
     if (broadened) {
       const { roles } = await this.fetchRoles(
         this.scopeCompanies(merged),
-        effectiveKeywords(merged),
+        merged.keywords,
       );
       await this.store.markSeen(watchId, narrow(roles, merged).map((r) => r.id));
     }

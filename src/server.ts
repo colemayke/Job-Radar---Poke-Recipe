@@ -4,14 +4,13 @@ import type { RoleFetcher } from "./adapters/index.js";
 import { registryScope } from "./companies.js";
 import { formatRoles } from "./format.js";
 import {
-  DEFAULT_KEYWORDS,
   DEFAULT_POSTED_WITHIN_DAYS,
   dedupeRoles,
   filterRoles,
   sortNewestFirst,
 } from "./matching.js";
 import type { WatchConfig } from "./types.js";
-import { WatchService, effectiveKeywords } from "./watches.js";
+import { WatchService } from "./watches.js";
 
 const filterShape = {
   companies: z
@@ -27,7 +26,10 @@ const filterShape = {
     .array(z.string())
     .optional()
     .describe(
-      `Keywords matched case-insensitively as substrings of title and department. Omit for defaults: ${DEFAULT_KEYWORDS.join(", ")}.`,
+      "Keywords matched case-insensitively as substrings of title and department. Omit for " +
+        "NO keyword filter: every role of every function (engineering, marketing, design, " +
+        "ops, internships, co-ops, ...) is a candidate. Pass keywords to narrow to a " +
+        'function ("marketing", "data") or career stage ("intern", "co-op", "new grad").',
     ),
   locations: z
     .array(z.string())
@@ -110,7 +112,10 @@ export function buildServer(service: WatchService, fetchRoles: RoleFetcher): Mcp
         "a custom set instead — unknown names are resolved live and unresolvable ones are " +
         "returned in `unresolved`. Seeds the seen-set with all current in-window matches so " +
         "the first scheduled check is quiet. Returns the watch_id needed by " +
-        "check_new_roles — keep it. Use once when the user asks to start watching for jobs.",
+        "check_new_roles — keep it. Use once when the user asks to start watching for jobs. " +
+        "An empty keyword set is intentionally broad (all functions, including internships " +
+        "and co-ops); the two volume levers are supplying keywords and tightening " +
+        "posted_within_days.",
       inputSchema: { ...filterShape, ...postedWithinShape },
       outputSchema: {
         watch_id: z.string(),
@@ -236,7 +241,7 @@ export function buildServer(service: WatchService, fetchRoles: RoleFetcher): Mcp
       };
       const { roles, failed_count, failed_sample } = await fetchRoles(
         scope,
-        effectiveKeywords(config),
+        config.keywords,
       );
       const matches = sortNewestFirst(filterRoles(dedupeRoles(roles), config));
       if (matches.length === 0) {
