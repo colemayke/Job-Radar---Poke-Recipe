@@ -1,0 +1,247 @@
+{
+ "jobs": [
+  {
+   "absolute_url": "https://www.coinbase.com/careers/positions/7809557?gh_jid=7809557",
+   "data_compliance": [
+    {
+     "type": "gdpr",
+     "requires_consent": false,
+     "requires_processing_consent": false,
+     "requires_retention_consent": false,
+     "retention_period": null,
+     "demographic_data_consent_applies": false
+    }
+   ],
+   "education": "education_required",
+   "employment": "employment_required",
+   "internal_job_id": 3411206,
+   "location": {
+    "name": "New York City, NY"
+   },
+   "metadata": [
+    {
+     "id": 166433,
+     "name": "Team",
+     "value": "Finance",
+     "value_type": "single_select"
+    },
+    {
+     "id": 11090754,
+     "name": "HM Employee ID (WD)",
+     "value": "208259",
+     "value_type": "short_text"
+    },
+    {
+     "id": 3174030,
+     "name": "Careersite Department (for job postings)",
+     "value": "Finance & Accounting",
+     "value_type": "single_select"
+    },
+    {
+     "id": 13234829,
+     "name": "mule_sourcers_counter_custom",
+     "value": null,
+     "value_type": "number"
+    },
+    {
+     "id": 13234830,
+     "name": "mule_recruiters_counter_custom",
+     "value": null,
+     "value_type": "number"
+    }
+   ],
+   "id": 7809557,
+   "updated_at": "2026-06-23T19:38:01-04:00",
+   "requisition_id": "P76695",
+   "title": "Accountant, Capital Markets",
+   "company_name": "Coinbase",
+   "first_published": "2026-04-28T20:16:16-04:00",
+   "language": "en",
+   "application_deadline": null,
+   "content": "&lt;div class=&quot;content-intro&quot;&gt;&lt;p&gt;Ready to do the most impactful work of your career? At&amp;nbsp;&lt;a href=&quot;https://www.coinbase.com/?utm_campaign=mt_o_m_w_m_m__coi_0_jd-oncha",
+   "departments": [
+    {
+     "id": 967,
+     "name": "Finance & Accounting",
+     "child_ids": [],
+     "parent_id": null
+    }
+   ],
+   "offices": [
+    {
+     "id": 76481,
+     "name": "US - Remote Zone 1 (Job Requisitions Only)",
+     "location": null,
+     "child_ids": [],
+     "parent_id": null
+    }
+   ],
+   "ai_disclaimer": null,
+   "include_ai_disclaimer": null,
+   "ai_opt_out_request_url": null
+  },
+  {
+   "absolute_url": "https://www.coinbase.com/careers/positions/7822885?gh_jid=7822885",
+   "data_compliance": [
+    {
+     "type": "gdpr",
+     "requires_consent": false,
+     "requires_processing_consent": false,
+     "requires_retention_consent": false,
+     "retention_period": null,
+     "demographic_data_consent_applies": false
+    }
+   ],
+   "education": "education_required",
+   "employment": "employment_required",
+   "internal_job_id": 3414981,
+   "location": {
+    "name": "Remote - Canada"
+   },
+   "metadata": [
+    {
+     "id": 166433,
+     "name": "Team",
+     "value": "Finance",
+     "value_type": "single_select"
+    },
+    {
+     "id": 11090754,
+     "name": "HM Employee ID (WD)",
+     "value": "208714",
+     "value_type": "short_text"
+    },
+    {
+     "id": 3174030,
+     "name": "Careersite Department (for job postings)",
+     "value": "Finance & Accounting",
+     "value_type": "single_select"
+    },
+    {
+     "id": 13234829,
+     "name": "mule_sourcers_counter_custom",
+     "value": null,
+     "value_type": "number"
+    },
+    {
+     "id": 13234830,
+     "name": "mule_recruiters_counter_custom",
+     "value": null,
+     "value_type": "number"
+    }
+   ],
+   "id": 7822885,
+   "updated_at": "2026-07-06T20:34:18-04:00",
+   "requisition_id": "P76779",
+   "title": "Accounting Manager, GL Operations & Intercompany",
+   "company_name": "Coinbase",
+   "first_published": "2026-04-17T10:23:30-04:00",
+   "language": "en",
+   "application_deadline": null,
+   "content": "&lt;div class=&quot;content-intro&quot;&gt;&lt;p&gt;Ready to do the most impactful work of your career? At&amp;nbsp;&lt;a href=&quot;https://www.coinbase.com/?utm_campaign=mt_o_m_w_m_m__coi_0_jd-oncha",
+   "departments": [
+    {
+     "id": 967,
+     "name": "Finance & Accounting",
+     "child_ids": [],
+     "parent_id": null
+    }
+   ],
+   "offices": [
+    {
+     "id": 67039,
+     "name": "Remote - Canada",
+     "location": null,
+     "child_ids": [],
+     "parent_id": null
+    }
+   ],
+   "ai_disclaimer": null,
+   "include_ai_disclaimer": null,
+   "ai_opt_out_request_url": null
+  },
+  {
+   "absolute_url": "https://www.coinbase.com/careers/positions/7779094?gh_jid=7779094",
+   "data_compliance": [
+    {
+     "type": "gdpr",
+     "requires_consent": false,
+     "requires_processing_consent": false,
+     "requires_retention_consent": false,
+     "retention_period": null,
+     "demographic_data_consent_applies": false
+    }
+   ],
+   "education": "education_required",
+   "employment": "employment_required",
+   "internal_job_id": 3405418,
+   "location": {
+    "name": "Remote - USA"
+   },
+   "metadata": [
+    {
+     "id": 166433,
+     "name": "Team",
+     "value": "Finance",
+     "value_type": "single_select"
+    },
+    {
+     "id": 11090754,
+     "name": "HM Employee ID (WD)",
+     "value": "208714",
+     "value_type": "short_text"
+    },
+    {
+     "id": 3174030,
+     "name": "Careersite Department (for job postings)",
+     "value": "Finance & Accounting",
+     "value_type": "single_select"
+    },
+    {
+     "id": 13234829,
+     "name": "mule_sourcers_counter_custom",
+     "value": null,
+     "value_type": "number"
+    },
+    {
+     "id": 13234830,
+     "name": "mule_recruiters_counter_custom",
+     "value": null,
+     "value_type": "number"
+    }
+   ],
+   "id": 7779094,
+   "updated_at": "2026-07-06T20:19:44-04:00",
+   "requisition_id": "P76672",
+   "title": "Accounting Manager, GL Operations & Intercompany",
+   "company_name": "Coinbase",
+   "first_published": "2026-04-08T19:19:12-04:00",
+   "language": "en",
+   "application_deadline": null,
+   "content": "&lt;div class=&quot;content-intro&quot;&gt;&lt;p&gt;Ready to do the most impactful work of your career? At&amp;nbsp;&lt;a href=&quot;https://www.coinbase.com/?utm_campaign=mt_o_m_w_m_m__coi_0_jd-oncha",
+   "departments": [
+    {
+     "id": 967,
+     "name": "Finance & Accounting",
+     "child_ids": [],
+     "parent_id": null
+    }
+   ],
+   "offices": [
+    {
+     "id": 76481,
+     "name": "US - Remote Zone 1 (Job Requisitions Only)",
+     "location": null,
+     "child_ids": [],
+     "parent_id": null
+    }
+   ],
+   "ai_disclaimer": null,
+   "include_ai_disclaimer": null,
+   "ai_opt_out_request_url": null
+  }
+ ],
+ "meta": {
+  "total": 131
+ }
+}

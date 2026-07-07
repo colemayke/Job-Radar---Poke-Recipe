@@ -1,0 +1,42 @@
+{
+  "name": "poke-job-radar",
+  "version": "1.0.0",
+  "description": "Job Radar MCP server for Poke",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "vitest run",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "smoke": "tsx scripts/smoke.ts",
+    "build-registry": "tsx scripts/build-registry.ts",
+    "verify-registry": "tsx scripts/verify-registry.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/colemayke/Job-Radar---Poke-Recipe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/colemayke/Job-Radar---Poke-Recipe/issues"
+  },
+  "homepage": "https://github.com/colemayke/Job-Radar---Poke-Recipe#readme",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "express": "^5.2.1",
+    "nanoid": "^5.1.16",
+    "pg": "^8.22.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.1.0",
+    "@types/pg": "^8.20.0",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.10"
+  }
+}
